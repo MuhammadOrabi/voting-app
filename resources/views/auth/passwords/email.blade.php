@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
+    <div class="row justify-content-center">
+        <div class="col-8 p-5">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title text-center">Reset Password</h4><hr>
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
@@ -15,23 +15,18 @@
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
                         {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
+                        <div class="form-group row {{ $errors->has('email') ? ' has-danger' : '' }}">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input id="email" type="email" class="form-control form-control-danger"
+                                    name="email" value="{{ old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    <div class="form-control-feedback">{{ $errors->first('email') }}</div>
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-6 p-1 push-4">
                                 <button type="submit" class="btn btn-primary">
                                     Send Password Reset Link
                                 </button>
