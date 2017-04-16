@@ -26,6 +26,11 @@ class User extends Authenticatable {
 		'password', 'remember_token',
 	];
 
+	public function activate()
+    {
+        return $this->hasOne('App\Activate');
+    }
+
 	public function polls() {
 		return $this->hasMany('App\poll');
 	}

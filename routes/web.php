@@ -14,7 +14,10 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@show');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/poll/{id}', 'PollController@index');
 
 Route::resource('options', 'OptionCotroller');
+
+Route::get('/active/{id}/{code}', 'UserController@active');
+Route::get('/active/{id}', 'UserController@resend');
