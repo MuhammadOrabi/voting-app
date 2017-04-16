@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="text-center">
+        <div class="text-center" v-if="type == 'guest'">
               <fieldset class="form-group">
                 <div class="form-check form-check-inline" v-for="label in labels">
                     <input type="radio" :id="label" :value="label" v-model="vote">
@@ -21,7 +21,7 @@
     export default {
 
         name: 'Chart',
-        props: ['id'],
+        props: ['id', 'type'],
         components: {
             LineChart
         },
