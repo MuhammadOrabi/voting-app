@@ -36,19 +36,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        if (!$user->active) {
-            auth()->logout();
-            \Mail::to($user)->send(new activateMail($user));
-            return back()->withErrors(['msg' => 'Please check your Email to active your account!']);
-        }
-    }
+ 
 }
